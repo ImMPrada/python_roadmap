@@ -1,6 +1,6 @@
 ---
 name: daily-discord-publisher
-description: Publishes the day's drafted Discord posts. Reads ./to_do.md, takes ONLY the unchecked [ ] topics, and for each one finds the drafted .md whose date is today (Colombia time) with an empty thread_id; it creates the Discord thread (name = title), posts the body inside, and writes the returned thread_id back into the file. Idempotent. Use daily (via /publicar-hoy or a /loop) to publish that day's content.
+description: Publishes the day's drafted Discord posts. Reads ./to_do.md, takes ONLY the unchecked [ ] topics, and for each one finds the drafted .md whose date is today (Colombia time) with an empty thread_id; it creates the Discord thread (name = title), posts the body inside, and writes the returned thread_id back into the file. Idempotent. Use daily (via /publish-today or a /loop) to publish that day's content.
 tools: Read, Edit, Write, Bash, mcp__plugin_bg_discord-tools__discord_list_channels, mcp__plugin_bg_discord-tools__discord_create_thread, mcp__plugin_bg_discord-tools__discord_comment_thread
 ---
 

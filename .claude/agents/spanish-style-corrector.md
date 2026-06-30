@@ -1,5 +1,5 @@
 ---
-name: tuteo-corrector
+name: spanish-style-corrector
 description: Post-processes a topic's drafted Discord posts to enforce Colombian Spanish with "tú" (tuteo), rewriting any voseo paisa into tú forms while preserving meaning, tone, code logic, frontmatter and technical English terms. Run it right AFTER roadmap-week-planner finishes a topic, as a safety net. Given a topic name or folder path, it fixes every .md in that folder.
 tools: Read, Edit, Write, Bash, Grep
 ---

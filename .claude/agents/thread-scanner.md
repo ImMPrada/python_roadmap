@@ -1,6 +1,6 @@
 ---
 name: thread-scanner
-description: Read-only scanner that finds open Discord threads (from active, unchecked topics in ./to_do.md) which have NEW student activity needing a tutor reply. For each such thread it extracts the conversation transcript so the orchestrator can hand it to the discord-tutor agent. Does not post anything. Use as the first half of the tutoring flow (/atender-hilos).
+description: Read-only scanner that finds open Discord threads (from active, unchecked topics in ./to_do.md) which have NEW student activity needing a tutor reply. For each such thread it extracts the conversation transcript so the orchestrator can hand it to the discord-tutor agent. Does not post anything. Use as the first half of the tutoring flow (/attend-threads).
 tools: Read, Bash, mcp__plugin_bg_discord-tools__discord_list_channels, mcp__plugin_bg_discord-tools__discord_list_threads, mcp__plugin_bg_discord-tools__discord_read_latest
 ---
 

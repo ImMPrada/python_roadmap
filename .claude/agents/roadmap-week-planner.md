@@ -46,10 +46,10 @@ Weekday → filename: `monday.md`, `tuesday.md`, `wednesday.md`, `thursday.md`,
 Run the existing tool for the target Monday:
 
 ```
-python3 scripts/festivos_semana.py <YYYY-MM-DD-of-target-monday>
+python3 scripts/week_holidays.py <YYYY-MM-DD-of-target-monday>
 ```
 
-Parse its output. Any day marked `🎉 FESTIVO` is a national holiday: **do NOT create
+Parse its output. Any day marked `🎉 HOLIDAY` is a national holiday: **do NOT create
 a file for that day**, and do NOT include it in `to_check.md`. The week simply has
 fewer messages that week.
 
@@ -123,18 +123,18 @@ Then create `./<slug_folder>/to_check.md` listing only the days that have a file
 ```markdown
 # To check — <Topic>
 
-- [ ] monday — publicado <publish-date> · revisar antes de <publish-date + 8 days>
-- [ ] tuesday — publicado <publish-date> · revisar antes de <publish-date + 8 days>
+- [ ] monday — published <publish-date> · review by <publish-date + 8 days>
+- [ ] tuesday — published <publish-date> · review by <publish-date + 8 days>
 ```
 
-`revisar antes de` = the day's `date` + 8 days. Compute with:
+`review by` = the day's `date` + 8 days. Compute with:
 `date -j -v+8d -f %F <YYYY-MM-DD> +%F` (macOS `date`).
 
 Finally update the root `./to_do.md` (create it if it doesn't exist) by appending a
 checklist line for the topic, avoiding duplicates:
 
 ```markdown
-# Temas a organizar
+# Topics
 
 - [ ] <Topic>
 ```

@@ -1,17 +1,16 @@
 #!/usr/bin/env python3
-"""Obtiene el contenido de un tema del Python roadmap de roadmap.sh.
+"""Fetch the content of a topic from roadmap.sh's Python roadmap.
 
-El contenido oficial vive en el repo de roadmap.sh
-(kamranahmedse/developer-roadmap), un archivo Markdown por tema en
-src/data/roadmaps/python/content/<slug>@<id>.md. Cada archivo trae la
-descripción que escribe roadmap.sh + los "free resources" (links etiquetados
-@article@/@video@/@official@/@feed@...).
+The official content lives in roadmap.sh's repo (kamranahmedse/developer-roadmap),
+one Markdown file per topic at src/data/roadmaps/python/content/<slug>@<id>.md.
+Each file holds the description roadmap.sh writes + the "free resources" (links
+tagged @article@/@video@/@official@/@feed@...).
 
-Uso:
+Usage:
     python3 roadmap_topic.py "Basic syntax"
     python3 roadmap_topic.py basic-syntax
 
-Imprime el Markdown del tema en stdout. Sale con código 2 si no encuentra match.
+Prints the topic's Markdown to stdout. Exits with code 2 if no match is found.
 """
 import json
 import re
@@ -48,32 +47,32 @@ def find_topic_file(topic):
     slug = slugify(topic)
     listing = get_json(CONTENT_API)
     files = [x for x in listing if x.get("type") == "file" and x["name"].endswith(".md")]
-    # nombre = "<slug>@<id>.md" -> comparar contra el slug antes del '@'
+    # name = "<slug>@<id>.md" -> compare against the slug before the '@'
     candidates = []
     for f in files:
         name_slug = f["name"].split("@", 1)[0]
         if name_slug == slug:
-            return f  # match exacto
+            return f  # exact match
         if slug in name_slug or name_slug in slug:
             candidates.append(f)
     if len(candidates) == 1:
         return candidates[0]
     if candidates:
         names = ", ".join(c["name"].split("@", 1)[0] for c in candidates)
-        raise SystemExit(f"Tema ambiguo {topic!r} (slug {slug!r}). Candidatos: {names}")
+        raise SystemExit(f"Ambiguous topic {topic!r} (slug {slug!r}). Candidates: {names}")
     return None
 
 
 def main():
     if len(sys.argv) < 2:
-        raise SystemExit("Uso: roadmap_topic.py \"<tema>\"")
+        raise SystemExit("Usage: roadmap_topic.py \"<topic>\"")
     topic = sys.argv[1]
     try:
         f = find_topic_file(topic)
     except urllib.error.URLError as e:
-        raise SystemExit(f"No se pudo conectar a GitHub API: {e}")
+        raise SystemExit(f"Could not reach the GitHub API: {e}")
     if f is None:
-        raise SystemExit(2)  # sin match
+        raise SystemExit(2)  # no match
     print(get_text(f["download_url"]))
 
 

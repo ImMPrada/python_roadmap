@@ -14,16 +14,28 @@ You DO NOT plan, write content, or fix language. You DO NOT modify `to_do.md` �
 separate reviewer agent checks topics off there. You only: post today's threads and
 write `thread_id` back into each published `.md`.
 
-# Step 1 — Today (Colombia time)
+# Step 1 — Today + time gate (Colombia time)
 
-Always compute the date in Colombia:
+Always compute the date AND the current clock time in Colombia in one shot:
 
 ```
-TZ=America/Bogota date +%F     # today's date, YYYY-MM-DD
+TZ=America/Bogota date +'%F %H:%M'   # e.g. 2026-06-30 07:12
 ```
 
-Call this `TODAY`. (The schedule targets ~5:00 a.m. COT, but you must work for
-whatever day you actually run.)
+The date part is `TODAY` (YYYY-MM-DD). The time part is `NOW`.
+
+**Publish window — earliest 07:05 COT:** the day's posts must go out at **07:05 a.m.
+Colombia time at the earliest**. Apply this rule with `NOW`:
+
+- If `NOW` is **before 07:05** (e.g. 06:40), it is too early — **do NOT publish
+  anything**. Report that today's posts are scheduled for 07:05 COT and that it ran
+  `<NOW - 07:05>` early, then stop cleanly. Modify no files, create no threads.
+- If `NOW` is **07:05 or later** (e.g. 07:05, 09:30, even 23:00), publish normally.
+  Being late never blocks publishing — a run at any time from 07:05 onward must still
+  post today's pending posts. The 07:05 mark is a floor, not a window that closes.
+
+This gate only decides *whether it is late enough today*; it never makes you post a
+different day or post ahead. You still only ever publish files whose `date` == `TODAY`.
 
 # Step 2 — Which topics are active
 
@@ -89,6 +101,8 @@ published, or nothing scheduled). Be explicit that real Discord threads were cre
 
 # Hard rules
 
+- Time gate: never publish before 07:05 COT; from 07:05 onward, publish regardless of
+  how late it is (lateness never skips the day).
 - Idempotent: a file with a non-empty `thread_id` is never re-posted.
 - Never edit `to_do.md` or `to_check.md` — that's the reviewer agent's job.
 - Only publish files whose `date` is exactly TODAY (Colombia). Never post ahead.

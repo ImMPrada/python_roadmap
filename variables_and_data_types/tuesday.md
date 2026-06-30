@@ -1,7 +1,7 @@
 ---
 title: "📦 Variables: las cajitas donde guardas tus datos"
 date: 2026-06-30
-thread_id: ""
+thread_id: "1521489203643289671"
 channel: "python"
 ---
 

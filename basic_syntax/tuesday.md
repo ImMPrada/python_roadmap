@@ -1,7 +1,7 @@
 ---
 title: "🐍 Arrancamos con la Basic Syntax de Python"
 date: 2026-06-30
-thread_id: ""
+thread_id: "1521489199247917086"
 channel: "python"
 ---
 

@@ -61,13 +61,25 @@ For each publishable file:
    `discord_create_thread(channel_id=<id>, name=<title>, auto_archive_duration=10080)`
    — a standalone public thread (omit message_id and content). 10080 = 7 days, so it
    stays open for replies all week. Capture the returned `id` as `THREAD_ID`.
-4. Post the body inside the thread:
-   `discord_comment_thread(thread_id=THREAD_ID, content=<body>)`.
-5. Write the id back into the file's frontmatter: replace the line
+4. Post the body inside the thread with `discord_comment_thread`. **Discord caps a
+   message at 2000 characters.** If the body is ≤ 2000 chars, post it in one call. If
+   it's longer, SPLIT it into ordered chunks of ≤ 2000 chars and post them as
+   consecutive `discord_comment_thread(thread_id=THREAD_ID, content=<chunk>)` calls,
+   in order. Split only at SAFE boundaries — between paragraphs or list items, and
+   NEVER in the middle of a fenced code block (keep each ```...``` block whole inside
+   one chunk; if a single code block alone exceeds 2000 chars, split it into multiple
+   complete ```python ...``` blocks). Preserve the original order and formatting.
+5. After the full body is posted, post ONE final short message mentioning everyone so
+   the channel gets pinged, e.g.:
+   `discord_comment_thread(thread_id=THREAD_ID, content="@everyone 👆 ¡nuevo del día! Pásate por el hilo 🐍")`
+   (keep it short and in Colombian Spanish, tuteo). The literal `@everyone` triggers
+   the ping.
+6. Write the id back into the file's frontmatter: replace the line
    `thread_id: ""` with `thread_id: "<THREAD_ID>"`. Change nothing else in the file.
 
-If creating the thread succeeds but commenting fails, still write the THREAD_ID back
-(the thread exists) and report the partial failure so a human can post the body.
+If creating the thread succeeds but a later step fails, still write the THREAD_ID back
+(the thread exists) and report exactly which step failed (which body chunk, or the
+@everyone ping) so a human can finish it without double-posting.
 
 # Step 5 — Report
 

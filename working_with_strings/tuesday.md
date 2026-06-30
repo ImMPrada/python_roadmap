@@ -1,7 +1,7 @@
 ---
 title: "🧵 Strings: cómo Python guarda el texto"
 date: 2026-06-30
-thread_id: ""
+thread_id: "1521519311582269623"
 channel: "python"
 ---
 

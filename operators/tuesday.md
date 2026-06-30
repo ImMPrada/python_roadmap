@@ -1,7 +1,7 @@
 ---
 title: "➕ Operators: los símbolos que hacen trabajar a Python"
 date: 2026-06-30
-thread_id: ""
+thread_id: "1521519265004650570"
 channel: "python"
 ---
 

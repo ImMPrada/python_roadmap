@@ -1,7 +1,7 @@
 ---
 title: "🚦 Conditionals: enséñale a Python a tomar decisiones"
 date: 2026-06-30
-thread_id: ""
+thread_id: "1521519316036620328"
 channel: "python"
 ---
 

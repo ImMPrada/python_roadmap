@@ -1,7 +1,7 @@
 ---
 title: "🔁 Loops: enséñale a Python a repetir por ti"
 date: 2026-06-30
-thread_id: ""
+thread_id: "1521519322713821189"
 channel: "python"
 ---
 

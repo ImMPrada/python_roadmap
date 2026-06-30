@@ -1,0 +1,10 @@
+{
+  "enabledPlugins": {
+    "bg@company-tools": true
+  },
+  "extraKnownMarketplaces": {
+    "company-tools": {
+      "source": { "source": "github", "repo": "bro-garden/claude-plugins" }
+    }
+  }
+}

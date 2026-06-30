@@ -1,0 +1,16 @@
+{
+  "env": {
+    "DISCORD_BOT_TOKEN": "<dummy_bot_token>",
+    "DISCORD_GUILD_ID": "<our_discord_guild_id>"
+  },
+  "enabledMcpjsonServers": [
+    "clickup"
+  ],
+  "enableAllProjectMcpServers": true,
+  "extraKnownMarketplaces": {
+    "company-tools": {
+      "source": { "source": "directory", "path": "<path_to_claude_plugins_repo_on_your_local>" },
+      "autoUpdate": false
+    }
+  }
+}
